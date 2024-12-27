@@ -1,9 +1,6 @@
 package com.example.project162.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.View;
 
 import com.bumptech.glide.Glide;
 import com.example.project162.Domain.Foods;

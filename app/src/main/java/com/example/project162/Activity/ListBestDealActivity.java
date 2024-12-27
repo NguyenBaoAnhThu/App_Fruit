@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class ListBestDealActivity extends AppCompatActivity {
     private RecyclerView bestDealsListView;
     private ProgressBar progressBar;
-    private ArrayList<Foods> foodList;
+    private ArrayList<Foods> foodsList;
     private BestFruitsAdapter adapter;
 
     @Override
@@ -41,8 +41,8 @@ public class ListBestDealActivity extends AppCompatActivity {
 
         // Configure RecyclerView
         bestDealsListView.setLayoutManager(new LinearLayoutManager(this));
-        foodList = new ArrayList<>();
-        adapter = new BestFruitsAdapter(this, foodList);
+        foodsList = new ArrayList<>();
+        adapter = new BestFruitsAdapter(this, foodsList);
         bestDealsListView.setAdapter(adapter);
         // Load data from Firebase
         loadBestDeals();
@@ -54,11 +54,11 @@ public class ListBestDealActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                foodList.clear();
+                foodsList.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
-                    Foods food = data.getValue(Foods.class);
-                    if (food != null && food.isBestFood()) {
-                        foodList.add(food);
+                    Foods foods = data.getValue(Foods.class);
+                    if (foods != null && foods.isBestFood()) {
+                        foodsList.add(foods);
                     }
                 }
                 adapter.notifyDataSetChanged();

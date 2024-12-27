@@ -52,7 +52,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="Shared and delightful, for an easy and enjoyable food ordering experience."
+        android:text="Shared and delightful, for an easy and enjoyable foods ordering experience."
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp"

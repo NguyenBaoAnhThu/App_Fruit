@@ -216,14 +216,13 @@
                     android:textSize="20dp"
                     android:textStyle="bold"/>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/buttonViewAllBestDeal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:background="#FFFFFF"
+                    android:background="@drawable/red_button_background"
                     android:text="Xem tất cả"
-                    android:textColor="@color/white"
-                    android:theme="@android:style/Widget.Material.Button" />
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

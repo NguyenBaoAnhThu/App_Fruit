@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.example.project162.Domain.Fruits;
+import com.example.project162.Domain.Foods;
 import com.example.project162.Helper.ChangeNumberItemsListener;
 import com.example.project162.Helper.ManagmentCart;
 import com.example.project162.R;
@@ -21,11 +21,11 @@ import com.example.project162.R;
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
-    ArrayList<Fruits> list;
+    ArrayList<Foods> list;
     private ManagmentCart managmentCart;
     ChangeNumberItemsListener changeNumberItemsListener;
 
-    public CartAdapter(ArrayList<Fruits> list, Context context, ChangeNumberItemsListener changeNumberItemsListener) {
+    public CartAdapter(ArrayList<Foods> list, Context context, ChangeNumberItemsListener changeNumberItemsListener) {
         this.list = list;
         managmentCart = new ManagmentCart(context);
         this.changeNumberItemsListener = changeNumberItemsListener;
@@ -40,13 +40,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.viewholder holder, int position) {
-        Fruits food = list.get(position);
+        Foods foods = list.get(position);
 
         // Hiển thị tên món ăn
-        holder.title.setText(food.getTitle());
+        holder.title.setText(foods.getTitle());
 
         // Hiển thị giá tiền tổng cộng cho sản phẩm
-        String formattedPriceEachItem = formatPriceWithCommas(food.getNumberInCart() * food.getPrice());
+        String formattedPriceEachItem = formatPriceWithCommas(foods.getNumberInCart() * foods.getPrice());
         holder.feeEachItem.setText(formattedPriceEachItem + " VND");
         holder.feeEachItem.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.green)); // Màu xanh
 
@@ -54,11 +54,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
         holder.totalEachItem.setVisibility(View.GONE);
 
         // Hiển thị số lượng của sản phẩm
-        holder.num.setText(String.valueOf(food.getNumberInCart()));
+        holder.num.setText(String.valueOf(foods.getNumberInCart()));
 
         // Tải ảnh sản phẩm bằng Glide
         Glide.with(holder.itemView.getContext())
-                .load(food.getImagePath())
+                .load(foods.getImagePath())
                 .transform(new CenterCrop(), new RoundedCorners(30))
                 .into(holder.pic);
 

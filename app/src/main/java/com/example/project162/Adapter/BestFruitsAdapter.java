@@ -15,17 +15,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.project162.Activity.DetailActivity;
-import com.example.project162.Domain.Fruits;
+import com.example.project162.Domain.Foods;
 import com.example.project162.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BestFruitsAdapter extends RecyclerView.Adapter<BestFruitsAdapter.ViewHolder> {
-    private ArrayList<Fruits> items;
+    private ArrayList<Foods> items;
     private Context context;
 
-    public BestFruitsAdapter(Context context, ArrayList<Fruits> items) {
+    public BestFruitsAdapter(Context context, ArrayList<Foods> items) {
         this.context = context;
         this.items = items;
     }
@@ -39,23 +39,23 @@ public class BestFruitsAdapter extends RecyclerView.Adapter<BestFruitsAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Fruits food = items.get(position);
+        Foods foods = items.get(position);
 
-        holder.titleTxt.setText(food.getTitle());
+        holder.titleTxt.setText(foods.getTitle());
 
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        holder.priceTxt.setText(decimalFormat.format(food.getPrice()) + " VNĐ");
-        holder.timeTxt.setText(food.getTimeValue() + " phút");
-        holder.starTxt.setText(String.valueOf(food.getStar()));
+        holder.priceTxt.setText(decimalFormat.format(foods.getPrice()) + " VNĐ");
+        holder.timeTxt.setText(foods.getTimeValue() + " phút");
+        holder.starTxt.setText(String.valueOf(foods.getStar()));
 
         Glide.with(context)
-                .load(food.getImagePath())
+                .load(foods.getImagePath())
                 .transform(new CenterCrop(), new RoundedCorners(30))
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("food", food);
+            intent.putExtra("food", foods);
             context.startActivity(intent);
         });
     }
