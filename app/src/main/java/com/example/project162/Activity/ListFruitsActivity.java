@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.project162.Adapter.FruitsListAdapter;
-import com.example.project162.Domain.Foods;
+import com.example.project162.Domain.Fruits;
 import com.example.project162.databinding.ActivityListFruitsBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,7 +46,7 @@ public class ListFruitsActivity extends BaseActivity {
     private void initList() {
         DatabaseReference myRef = database.getReference("Foods");
         binding.progressBar.setVisibility(View.VISIBLE);
-        ArrayList<Foods> list = new ArrayList<>();
+        ArrayList<Fruits> list = new ArrayList<>();
 
         Query query;
         if (isSearch) {
@@ -63,7 +63,7 @@ public class ListFruitsActivity extends BaseActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for (DataSnapshot issue : snapshot.getChildren()) {
-                        list.add(issue.getValue(Foods.class));
+                        list.add(issue.getValue(Fruits.class));
                     }
                     if (list.size() > 0) {
                         binding.foodListView.setLayoutManager(new GridLayoutManager(ListFruitsActivity.this, 2));

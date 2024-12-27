@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.example.project162.Domain.Foods;
+import com.example.project162.Domain.Fruits;
 import com.example.project162.Helper.ChangeNumberItemsListener;
 import com.example.project162.Helper.ManagmentCart;
 import com.example.project162.R;
@@ -21,11 +21,11 @@ import com.example.project162.R;
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
-    ArrayList<Foods> list;
+    ArrayList<Fruits> list;
     private ManagmentCart managmentCart;
     ChangeNumberItemsListener changeNumberItemsListener;
 
-    public CartAdapter(ArrayList<Foods> list, Context context, ChangeNumberItemsListener changeNumberItemsListener) {
+    public CartAdapter(ArrayList<Fruits> list, Context context, ChangeNumberItemsListener changeNumberItemsListener) {
         this.list = list;
         managmentCart = new ManagmentCart(context);
         this.changeNumberItemsListener = changeNumberItemsListener;
@@ -40,7 +40,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.viewholder holder, int position) {
-        Foods food = list.get(position);
+        Fruits food = list.get(position);
 
         // Hiển thị tên món ăn
         holder.title.setText(food.getTitle());

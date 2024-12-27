@@ -15,17 +15,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.project162.Activity.DetailActivity;
-import com.example.project162.Domain.Foods;
+import com.example.project162.Domain.Fruits;
 import com.example.project162.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BestFruitsAdapter extends RecyclerView.Adapter<BestFruitsAdapter.ViewHolder> {
-    private ArrayList<Foods> items;
+    private ArrayList<Fruits> items;
     private Context context;
 
-    public BestFruitsAdapter(Context context, ArrayList<Foods> items) {
+    public BestFruitsAdapter(Context context, ArrayList<Fruits> items) {
         this.context = context;
         this.items = items;
     }
@@ -39,7 +39,7 @@ public class BestFruitsAdapter extends RecyclerView.Adapter<BestFruitsAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Foods food = items.get(position);
+        Fruits food = items.get(position);
 
         holder.titleTxt.setText(food.getTitle());
 

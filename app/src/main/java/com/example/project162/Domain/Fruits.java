@@ -2,7 +2,7 @@ package com.example.project162.Domain;
 
 import java.io.Serializable;
 
-public class Foods implements Serializable {
+public class Fruits implements Serializable {
     private int CategoryId;
     private String Description;
     private boolean BestFood;
@@ -17,7 +17,7 @@ public class Foods implements Serializable {
     private String Title;
     private int numberInCart;
 
-    public Foods() {
+    public Fruits() {
     }
 
     @Override
