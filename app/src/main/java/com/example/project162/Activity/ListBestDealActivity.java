@@ -7,11 +7,10 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.project162.Adapter.BestFoodsAdapter;
+import com.example.project162.Adapter.BestFruitsAdapter;
 import com.example.project162.Domain.Foods;
 import com.example.project162.R;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +25,7 @@ public class ListBestDealActivity extends AppCompatActivity {
     private RecyclerView bestDealsListView;
     private ProgressBar progressBar;
     private ArrayList<Foods> foodList;
-    private BestFoodsAdapter adapter;
+    private BestFruitsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,7 @@ public class ListBestDealActivity extends AppCompatActivity {
         // Configure RecyclerView
         bestDealsListView.setLayoutManager(new LinearLayoutManager(this));
         foodList = new ArrayList<>();
-        adapter = new BestFoodsAdapter(this, foodList);
+        adapter = new BestFruitsAdapter(this, foodList);
         bestDealsListView.setAdapter(adapter);
         // Load data from Firebase
         loadBestDeals();

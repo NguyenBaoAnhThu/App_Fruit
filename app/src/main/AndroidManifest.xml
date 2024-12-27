@@ -37,7 +37,7 @@
             android:name=".Activity.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.ListFoodsActivity"
+            android:name=".Activity.ListFruitsActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.SignupActivity"

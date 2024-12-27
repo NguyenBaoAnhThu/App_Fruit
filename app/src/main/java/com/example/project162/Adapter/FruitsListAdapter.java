@@ -20,24 +20,24 @@ import com.example.project162.R;
 
 import java.util.ArrayList;
 
-public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewholder> {
+public class FruitsListAdapter extends RecyclerView.Adapter<FruitsListAdapter.viewholder> {
     ArrayList<Foods> items;
     Context context;
 
-    public FoodListAdapter(ArrayList<Foods> items) {
+    public FruitsListAdapter(ArrayList<Foods> items) {
         this.items = items;
     }
 
     @NonNull
     @Override
-    public FoodListAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FruitsListAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(context).inflate(R.layout.viewholder_list_food, parent, false);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.viewholder_list_fruits, parent, false);
         return new viewholder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodListAdapter.viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull FruitsListAdapter.viewholder holder, int position) {
         holder.titleTxt.setText(items.get(position).getTitle());
         holder.timeTxt.setText(items.get(position).getTimeValue() + " phút");
 

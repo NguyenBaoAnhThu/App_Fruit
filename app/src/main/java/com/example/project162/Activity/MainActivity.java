@@ -14,7 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
-import com.example.project162.Adapter.BestFoodsAdapter;
+import com.example.project162.Adapter.BestFruitsAdapter;
 import com.example.project162.Adapter.CategoryAdapter;
 import com.example.project162.Domain.Category;
 import com.example.project162.Domain.Foods;
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 // Loại bỏ dấu trong từ người dùng nhập
                 String searchTextNoDiacritics = removeDiacritics(text);
 
-                Intent intent = new Intent(MainActivity.this, ListFoodsActivity.class);
+                Intent intent = new Intent(MainActivity.this, ListFruitsActivity.class);
                 intent.putExtra("text", searchTextNoDiacritics); // Sử dụng text không dấu
                 intent.putExtra("isSearch", true);
                 startActivity(intent);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     if (list.size() > 0) {
                         binding.bestFoodView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
                         // Thêm context vào constructor của adapter
-                        RecyclerView.Adapter adapter = new BestFoodsAdapter(MainActivity.this, list);
+                        RecyclerView.Adapter adapter = new BestFruitsAdapter(MainActivity.this, list);
                         binding.bestFoodView.setAdapter(adapter);
                     }
                     binding.progressBarBestFood.setVisibility(View.GONE);

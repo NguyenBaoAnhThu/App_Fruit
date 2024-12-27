@@ -21,11 +21,11 @@ import com.example.project162.R;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class BestFoodsAdapter extends RecyclerView.Adapter<BestFoodsAdapter.ViewHolder> {
+public class BestFruitsAdapter extends RecyclerView.Adapter<BestFruitsAdapter.ViewHolder> {
     private ArrayList<Foods> items;
     private Context context;
 
-    public BestFoodsAdapter(Context context, ArrayList<Foods> items) {
+    public BestFruitsAdapter(Context context, ArrayList<Foods> items) {
         this.context = context;
         this.items = items;
     }

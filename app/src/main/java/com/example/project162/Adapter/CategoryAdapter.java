@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.project162.Activity.ListFoodsActivity;
+import com.example.project162.Activity.ListFruitsActivity;
 import com.example.project162.Domain.Category;
 import com.example.project162.R;
 
@@ -61,7 +61,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
 
         // Cài đặt onClickListener để chuyển đến ListFoodsActivity
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ListFoodsActivity.class);
+            Intent intent = new Intent(context, ListFruitsActivity.class);
             intent.putExtra("CategoryId", items.get(position).getId());
             intent.putExtra("CategoryName", items.get(position).getName());
             context.startActivity(intent);
