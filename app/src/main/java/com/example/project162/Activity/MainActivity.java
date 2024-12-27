@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.example.project162.Adapter.BestFoodsAdapter;
 import com.example.project162.Adapter.CategoryAdapter;
@@ -34,8 +33,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-
         binding.cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
 
         // New button listener to navigate to ActivityListBestDeal
@@ -106,7 +105,8 @@ public class MainActivity extends BaseActivity {
                     }
                     if (list.size() > 0) {
                         binding.bestFoodView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-                        RecyclerView.Adapter adapter = new BestFoodsAdapter(list);
+                        // Thêm context vào constructor của adapter
+                        RecyclerView.Adapter adapter = new BestFoodsAdapter(MainActivity.this, list);
                         binding.bestFoodView.setAdapter(adapter);
                     }
                     binding.progressBarBestFood.setVisibility(View.GONE);
@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý lỗi nếu có
             }
         });
     }
@@ -134,7 +134,8 @@ public class MainActivity extends BaseActivity {
                     }
                     if (list.size() > 0) {
                         binding.categoryView.setLayoutManager(new GridLayoutManager(MainActivity.this, 4));
-                        RecyclerView.Adapter adapter = new CategoryAdapter(list);
+                        // Thêm context vào constructor của adapter
+                        RecyclerView.Adapter adapter = new CategoryAdapter(MainActivity.this, list);
                         binding.categoryView.setAdapter(adapter);
                     }
                     binding.progressBarCategory.setVisibility(View.GONE);
@@ -143,7 +144,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý lỗi nếu có
             }
         });
     }
@@ -166,7 +167,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý lỗi nếu có
             }
         });
     }
@@ -189,7 +190,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý lỗi nếu có
             }
         });
     }
@@ -212,11 +213,12 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Xử lý lỗi nếu có
             }
         });
     }
-    //Them truong ko dau
+
+    // Cập nhật tất cả các món ăn với trường "TitleNoDiacritics" không dấu
     private void updateAllFoodsToAddNoDiacriticsField() {
         DatabaseReference foodsRef = database.getReference("Foods");
 
@@ -224,13 +226,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot child : snapshot.getChildren()) {
-                    // Lấy dữ liệu từ trường Title
                     String title = child.child("Title").getValue(String.class);
                     if (title != null) {
-                        // Loại bỏ dấu tiếng Việt
                         String titleNoDiacritics = removeDiacritics(title);
-
-                        // Cập nhật trường mới vào Firebase
                         child.getRef().child("TitleNoDiacritics").setValue(titleNoDiacritics)
                                 .addOnCompleteListener(task -> {
                                     if (task.isSuccessful()) {
@@ -250,11 +248,8 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-
-
     @Override
     public void onBackPressed() {
-
+        // Bạn có thể tùy chỉnh hành động khi nhấn nút Back
     }
 }
-

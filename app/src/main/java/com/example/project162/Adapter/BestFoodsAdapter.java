@@ -21,42 +21,41 @@ import com.example.project162.R;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class BestFoodsAdapter extends RecyclerView.Adapter<BestFoodsAdapter.viewholder> {
-    ArrayList<Foods> items;
-    Context context;
+public class BestFoodsAdapter extends RecyclerView.Adapter<BestFoodsAdapter.ViewHolder> {
+    private ArrayList<Foods> items;
+    private Context context;
 
-    public BestFoodsAdapter(ArrayList<Foods> items) {
+    public BestFoodsAdapter(Context context, ArrayList<Foods> items) {
+        this.context = context;
         this.items = items;
     }
 
     @NonNull
     @Override
-    public BestFoodsAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_best_deal, parent, false);
-        return new viewholder(inflate);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.viewholder_best_deal, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BestFoodsAdapter.viewholder holder, int position) {
-        holder.titleTxt.setText(items.get(position).getTitle());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Foods food = items.get(position);
 
-        // Định dạng tiền
+        holder.titleTxt.setText(food.getTitle());
+
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        String formattedPrice = decimalFormat.format(items.get(position).getPrice()).replace(',', '.');
-        holder.priceTxt.setText(formattedPrice + " VNĐ");
-        holder.priceTxt.setTextColor(context.getResources().getColor(R.color.greentext)); // Chọn màu xanh
-        holder.timeTxt.setText(items.get(position).getTimeValue() + " phút ");
-        holder.starTxt.setText("" + items.get(position).getStar());
+        holder.priceTxt.setText(decimalFormat.format(food.getPrice()) + " VNĐ");
+        holder.timeTxt.setText(food.getTimeValue() + " phút");
+        holder.starTxt.setText(String.valueOf(food.getStar()));
 
         Glide.with(context)
-                .load(items.get(position).getImagePath())
+                .load(food.getImagePath())
                 .transform(new CenterCrop(), new RoundedCorners(30))
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("object", items.get(position));
+            intent.putExtra("food", food);
             context.startActivity(intent);
         });
     }
@@ -66,11 +65,11 @@ public class BestFoodsAdapter extends RecyclerView.Adapter<BestFoodsAdapter.view
         return items.size();
     }
 
-    public class viewholder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTxt, priceTxt, starTxt, timeTxt;
         ImageView pic;
 
-        public viewholder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTxt = itemView.findViewById(R.id.titleTxt);
             priceTxt = itemView.findViewById(R.id.priceTxt);
